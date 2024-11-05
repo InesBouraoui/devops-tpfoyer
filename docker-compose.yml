@@ -15,7 +15,7 @@ services:
   app-timesheet:
     depends_on:
       - mysqldb
-    image: nessa007/tp-foyer:1.0.0
+    image: nessa2022/tp-foyer:1.0.0
     restart: on-failure
     ports:
       - "8089:8089"
