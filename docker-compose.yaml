@@ -1,0 +1,35 @@
+services:
+  tpfoyer-app:
+    image: nessa2022/tp-foyer:5.0.0
+    ports:
+      - "8089:8089"
+    environment:
+      SERVER_PORT: 8089
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-devops:3306/tpfoyer-devops-db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: ines
+      SPRING_DATASOURCE_PASSWORD: ines
+    networks:
+      - solution-network
+
+
+  mysql-devops:
+    image: mysql:latest
+    container_name: mysql-devops
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_ROOT_PASSWORD: ""
+      MYSQL_DATABASE: "tpfoyer-devops-db"
+      MYSQL_USER: "ines"
+      MYSQL_PASSWORD: "ines"
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data_vol:/var/lib/mysql
+    networks:
+      - solution-network
+
+
+volumes:
+  mysql_data_vol:
+networks:
+  solution-network:
